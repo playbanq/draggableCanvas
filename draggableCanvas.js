@@ -31,10 +31,12 @@ function draggableCanvas(canvas, outerCanvas) {
                 if (typeof options === 'function') {
                     callback = options;
                     dragKeyCode = 16;
-                } else if (options === 0) {
-                    alwaysDraggable = true;
-                    dragKeyDown = true;
-                    canvas.style.cursor = 'move';
+                } else if (typeof options === 'object') {
+                    if (options.alwaysDraggable) {
+                        alwaysDraggable = true;
+                        dragKeyDown = true;
+                        canvas.style.cursor = 'move';
+                    }
                 } 
 
                 document.addEventListener('keydown', function (event) {
