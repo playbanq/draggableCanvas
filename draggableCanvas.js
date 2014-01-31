@@ -35,17 +35,17 @@ function draggableCanvas(canvas, outerCanvas) {
                 });
 
                 canvas.addEventListener('mousedown', function (event) {
-                    var container = canvas.getBoundingClientRect();
-                    cursor.x = event.clientX;
-                    cursor.y = event.clientY;
+                    var marginTop = parseInt(canvas.style.top) || 0,
+                        marginLeft = parseInt(canvas.style.left) || 0;
+
+                    cursor.x = event.clientX - marginLeft;
+                    cursor.y = event.clientY - marginTop;
                     mouseDown = true;
                 });
                 document.addEventListener('mousemove', function (event) {
-                    var container = canvas.getBoundingClientRect(),
-                        currentX = event.clientX, 
-                        currentY = event.clientY,
-                        marginTop = parseInt(canvas.style.top) || 0,
-                        marginLeft = parseInt(canvas.style.left) || 0;
+                    var currentX = event.clientX, 
+                        currentY = event.clientY;
+
                     if (dragKeyDown && mouseDown) {
                         canvas.style.top = Math.floor(currentY - cursor.y) + 'px';
                         canvas.style.left = Math.floor(currentX - cursor.x) + 'px';
