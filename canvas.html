@@ -3,10 +3,14 @@
 <head>
     <meta charset='utf-8'>
     <meta name='description' content='Enable cnvas drag and drop when holding a given key'>
-    <title>Tiled Canvas</title>
+    <title>Draggable Canvas</title>
 </head>
 <body style='margin: 0px; padding: 20px;'>
-    <canvas id='draggableCanvas' style='border: 1px dashed #ccc'></canvas>
+    <div style='width: 600px; height: 600px;' id='canvasContainer'>
+        <canvas id='draggableCanvas'></canvas>
+        <!--<canvas id='draggableCanvas2'></canvas><!---->
+    </div>
+    <script src='../clickableCanvas/clickableCanvas.js'></script>
     <script src='draggableCanvas.js'></script>
     <script src='examples/canvasInsideCanvas.js'></script><!---->
 </body>
