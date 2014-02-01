@@ -8,7 +8,7 @@ var DraggableCanvas = Object.create({}, {
     }
 });
 
-function draggableCanvas(canvas, outerCanvas) {
+function draggableCanvas(canvas, options) {
     // Validate that the canvas parameter is indeed an existing canvas element
     if (canvas.nodeName !== 'CANVAS') {
         console.log('ERROR: The element provided is not a canvas element.');
@@ -113,7 +113,12 @@ function draggableCanvas(canvas, outerCanvas) {
         }
     }
     
+
     Object.defineProperties(canvas, properties);
+    var extendedCanvas = Object.create({}, properties);
+    if (typeof options === 'object' && options.autoDrag) {
+        extendedCanvas.onDrag(options, function () {});
+    }
     
-    return Object.create({}, properties);
+    return extendedCanvas;
 }
