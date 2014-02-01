@@ -20,6 +20,7 @@ function draggableCanvas(canvas, outerCanvas) {
         mouseDown = false,
         dragKeyDown = false,
         alwaysDraggable = false,
+        autoDrag = true,
         onDropCallback;
 
     // Define the canvas object interface
@@ -36,6 +37,9 @@ function draggableCanvas(canvas, outerCanvas) {
                         alwaysDraggable = true;
                         dragKeyDown = true;
                         canvas.style.cursor = 'move';
+                    }
+                    if (typeof options.autoDrag === 'boolean') {
+                        autoDrag = options.autoDrag;
                     }
                 } 
 
@@ -72,12 +76,16 @@ function draggableCanvas(canvas, outerCanvas) {
                 });
                 document.addEventListener('mousemove', function (event) {
                     var currentX = event.clientX, 
-                        currentY = event.clientY;
+                        currentY = event.clientY,
+                        top = Math.floor(currentY - cursor.y),
+                        left = Math.floor(currentX - cursor.x);
 
                     if (dragKeyDown && mouseDown) {
-                        canvas.style.top = Math.floor(currentY - cursor.y) + 'px';
-                        canvas.style.left = Math.floor(currentX - cursor.x) + 'px';
-                        callback(canvas.style.top, canvas.style.left, currentX, currentY);
+                        if (autoDrag) {
+                            canvas.style.top = top + 'px';
+                            canvas.style.left = left + 'px';
+                        }
+                        callback(top, left, currentX, currentY);
                     }
                 });
                 document.addEventListener('mouseup', function (event) {
