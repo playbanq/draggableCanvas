@@ -26,6 +26,11 @@ canvas1.onDrag(options, function (top, left, cursorX, cursorY) {
         canvas1.style.top = top + 'px';
         canvas1.style.left = left + 'px';
     } else {
+        if (left + canvas1.width <= canvas2left + canvas2.width/2) {
+            canvas1.style.left = canvas2left - canvas1.width + 'px';
+        } else if (left >= canvas2left + canvas2.width/2) {
+            canvas1.style.left = canvas2left + canvas2.width + 'px';
+        }
         if (parseInt(canvas1.style.left) + canvas1.width <= canvas2left) {
             canvas1.style.top = top + 'px';
         } else if (parseInt(canvas1.style.left) >= canvas2left + canvas2.width) {
@@ -37,6 +42,11 @@ canvas1.onDrag(options, function (top, left, cursorX, cursorY) {
         canvas1.style.top = top + 'px';
         canvas1.style.left = left + 'px';
     } else {
+        if (top + canvas1.height <= canvas2top + canvas2.height/2) {
+            canvas1.style.top = canvas2top - canvas1.height + 'px';
+        } else if (top >= canvas2top + canvas2.height/2) {
+            canvas1.style.top = canvas2top + canvas2.height + 'px';
+        }
         if (parseInt(canvas1.style.top) + canvas1.height <= canvas2top) {
             canvas1.style.left = left + 'px';
         } else if (parseInt(canvas1.style.top) >= canvas2top + canvas2.height) {
