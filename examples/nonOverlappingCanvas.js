@@ -56,14 +56,11 @@ canvas1.onDrag(options, function (top, left, cursorX, cursorY) {
 });
 
 // Canvas 2: Red
-DraggableCanvas.extend(canvas2);
+options.autoDrag = true;
+DraggableCanvas.extend(canvas2, options);
 canvas2.setSize(100, 100);
 context2.fillStyle = 'rgba(223, 128, 128, 0.8)';
 context2.fillRect(0, 0, 100, 100);
 canvas2.style.position = 'absolute';
 canvas2.style.top = '200px';
 canvas2.style.left = '200px';
-canvas2.onDrag(options, function (top, left) {
-    canvas1.style.zIndex = 1;
-    canvas2.style.zIndex = 2;
-});
